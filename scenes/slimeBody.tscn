@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://bsiboyfuc5p3f"]
+
+[ext_resource type="Texture2D" uid="uid://bobowh1ew83nd" path="res://assets/slime_purple.png" id="1_17l5m"]
+[ext_resource type="Script" path="res://scripts/slimeBody.gd" id="1_64fam"]
+[ext_resource type="PackedScene" uid="uid://bsq347g0fb54t" path="res://scenes/character_build.tscn" id="2_uxsaj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qux68"]
+atlas = ExtResource("1_17l5m")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b77pr"]
+atlas = ExtResource("1_17l5m")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfxhq"]
+atlas = ExtResource("1_17l5m")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3p2q"]
+atlas = ExtResource("1_17l5m")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s5ey4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qux68")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b77pr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfxhq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3p2q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q2oap"]
+size = Vector2(14, 12)
+
+[node name="testSlimeBody" type="CharacterBody2D"]
+script = ExtResource("1_64fam")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_s5ey4")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_q2oap")
+
+[node name="CharacterBuild" parent="." instance=ExtResource("2_uxsaj")]
+characterMovementSpeed = 50.0
+characterBasicAttackDamage = 20.0
+characterBasicAttackSpeed = 1.5
+characterHealth = 200.0
+
+[node name="HealthLabel" parent="CharacterBuild" index="0" node_paths=PackedStringArray("character")]
+offset_left = -15.0
+offset_top = -24.0
+offset_right = 15.0
+offset_bottom = -12.0
+character = NodePath("../..")
+
+[editable path="CharacterBuild"]

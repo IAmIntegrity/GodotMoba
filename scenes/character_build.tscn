@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsq347g0fb54t"]
+
+[ext_resource type="Script" path="res://scripts/CharacterBuild.gd" id="1_m2jpu"]
+[ext_resource type="FontFile" uid="uid://bdu2ynquqmcae" path="res://assets/PixelOperator8-Bold.ttf" id="2_th387"]
+[ext_resource type="Script" path="res://scripts/HealthLabel.gd" id="3_kdiwr"]
+
+[node name="CharacterBuild" type="Node"]
+script = ExtResource("1_m2jpu")
+
+[node name="HealthLabel" type="Label" parent="." node_paths=PackedStringArray("characterBuild")]
+offset_right = 30.0
+offset_bottom = 12.0
+theme_override_fonts/font = ExtResource("2_th387")
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_kdiwr")
+characterBuild = NodePath("..")
